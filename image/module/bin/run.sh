@@ -1,12 +1,16 @@
 #!/bin/bash
 
-# You may want to add some configuration/init steps here
+web_ui_up(){
+	sudo pihole -a -p << EOF
+$PASSWORD
+$PASSWORD
+EOF
+	while ! curl -s http://127.0.0.1/admin/ | grep -q "Pi-hole Admin Console"; do
+		sleep 1
+	done
+	echo "[`hostname -s`] Started"
+}
 
-# Let SKWR know that the container is up and running 
-echo "[`hostname -s`] Started"
-
-# Overwrite this section
-while true; do
-	echo "I'm alive"
-	sleep 10
-done
+web_ui_up &
+/s6-init
+echo "[`hostname -s`] Stopped"

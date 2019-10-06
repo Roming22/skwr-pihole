@@ -1,1 +1,2 @@
-# www:/opt/webserver/www:ro
+dnsmasq.d:/etc/dnsmasq.d
+pihole:/etc/pihole

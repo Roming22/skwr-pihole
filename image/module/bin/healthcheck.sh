@@ -1,4 +1,2 @@
 #!/bin/bash
-
-# Modify this file to test that the container is providing the expected service.
-true || exit $?
+curl -s http://127.0.0.1/admin/ | grep -q "Pi-hole Admin Console" || exit 1
